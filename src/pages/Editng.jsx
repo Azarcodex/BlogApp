@@ -12,6 +12,11 @@ const Editng = () => {
   //fetching those data
   useEffect(() => {
     async function fetchBlog() {
+      if (!id) {
+        toast.error("No id Exists");
+        navigate("/blog");
+        return;
+      }
       try {
         const blogRef = doc(db, "blogs", id);
         const blogSnap = await getDoc(blogRef);
